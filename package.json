@@ -25,6 +25,7 @@
     "dev:rn": "npm run build:rn -- --watch",
     "dev:qq": "npm run build:qq -- --watch",
     "dev:quickapp": "npm run build:quickapp -- --watch",
+    "codegen": "codegen",
     "pre-commit-msg": "echo 'Pre-commit checks...' && exit 0",
     "lint": "echo '[ESLint]' && eslint './**/*.{js,jsx,ts,tsx}'"
   },
@@ -51,6 +52,7 @@
     "react": "17.0.0"
   },
   "devDependencies": {
+    "@redchili/codegen": "0.5.2",
     "@types/webpack-env": "1.13.6",
     "@types/react": "17.0.2",
     "@tarojs/mini-runner": "3.2.10",
@@ -68,7 +70,7 @@
     "stylelint": "9.3.0",
     "@typescript-eslint/parser": "4.15.1",
     "@typescript-eslint/eslint-plugin": "4.15.1",
-    "typescript": "4.1.0",
+    "typescript": "4.2.3",
     "webpack-bundle-analyzer": "3.8.0"
   }
 }

@@ -1,26 +1,23 @@
+import routes from './router/routes.json'
+
 export default {
-  pages: [
-    'pages/home/index',
-    'pages/my/index',
-    'pages/recentlyRead/index',
-    'pages/index/index'
-  ],
+  pages: routes.pages,
   tabBar: {
     list: [
       {
-        pagePath: 'pages/recentlyRead/index',
+        pagePath: routes.tabs.recentlyRead,
         text: '最近阅读',
         iconPath: 'assets/tab-icon/icon-home@2x.png',
         selectedIconPath:'assets/tab-icon/icon-home-selected@2x.png'
       },
       {
-        pagePath: 'pages/home/index',
+        pagePath: routes.tabs.home,
         text: '书城',
         iconPath: 'assets/tab-icon/icon-activity@2x.png',
         selectedIconPath:'assets/tab-icon/icon-activity-selected@2x.png'
       },
       {
-        pagePath: 'pages/my/index',
+        pagePath: routes.tabs.my,
         text: '个人中心',
         iconPath: 'assets/tab-icon/icon-user@2x.png',
         selectedIconPath:'assets/tab-icon/icon-user-selected@2x.png'

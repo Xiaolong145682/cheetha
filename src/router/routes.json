@@ -1,0 +1,33 @@
+{
+  "tabs": {
+    "home": "pages/tabs/home/index",
+    "my": "pages/tabs/my/index",
+    "recentlyRead": "pages/tabs/recentlyRead/index"
+  },
+  "packages": {},
+  "subpackages": [],
+  "pages": [
+    "pages/index/index",
+    "pages/tabs/home/index",
+    "pages/tabs/my/index",
+    "pages/tabs/recentlyRead/index"
+  ],
+  "source": {
+    "index": "pages/index/index",
+    "home": "pages/tabs/home/index",
+    "my": "pages/tabs/my/index",
+    "recentlyRead": "pages/tabs/recentlyRead/index"
+  },
+  "names": [
+    "index",
+    "home",
+    "my",
+    "recentlyRead"
+  ],
+  "customRoutes": {
+    "/pages/index/index": "/index",
+    "/pages/tabs/home/index": "/home",
+    "/pages/tabs/my/index": "/my",
+    "/pages/tabs/recentlyRead/index": "/recently-read"
+  }
+}

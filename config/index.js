@@ -1,6 +1,7 @@
 const path = require('path')
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 const TerserPlugin = require("terser-webpack-plugin")
+const routes = require('../src/router/routes.json')
 
 const config = {
   projectName: 'cheetah',
@@ -76,12 +77,7 @@ const config = {
     router: {
       mode: 'browser', //可选 'hash' | 'browser'
       // 配置自定义路由
-      customRoutes: {
-        '/pages/index/index': '/index',
-        '/pages/home/index': '/home',
-        '/pages/my/index': '/my',
-        '/pages/recentlyRead/index': '/recently-read'
-      }
+      customRoutes: routes.customRoutes
     }
   }
 }
