@@ -21,9 +21,31 @@
     "typeRoots": [
       "node_modules/@types",
       "global.d.ts"
-    ]
+    ],
+    "paths": {
+      "@components": ["./src/components"],
+      "@data": ["./src/data"],
+      "@utils": ["./src/utils"],
+      "@hooks": ["./src/hooks"],
+      "@stores": ["./src/stores"],
+      "@assets": ["./src/assets"],
+      "@api": ["./src/api"],
+      "@components/*": ["./src/components/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@data/*": ["./src/data/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@stores/*": ["./src/stores/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@yoc-types/*": ["./types/*"]
+    }
   },
+  "include": [
+    "src",
+    "types",
+    "global.d.ts"
+  ],
   "exclude": [
+    "**/*.spec.ts",
     "node_modules",
     "dist"
   ],

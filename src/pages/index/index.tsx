@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 import { View, Button, Text } from '@tarojs/components'
 import { observer, inject } from 'mobx-react'
 
@@ -7,16 +7,16 @@ import './index.scss'
 type PageStateProps = {
   store: {
     counterStore: {
-      counter: number,
-      increment: Function,
-      decrement: Function,
+      counter: number
+      increment: Function
+      decrement: Function
       incrementAsync: Function
     }
   }
 }
 
 interface Index {
-  props: PageStateProps;
+  props: PageStateProps
 }
 
 @inject('store')
