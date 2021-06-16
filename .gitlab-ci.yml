@@ -20,8 +20,8 @@ build-alpha:
       docker build
       --build-arg NODE_ENV=production
       --build-arg BUILD_ENV=alpha
-      --build-arg BAIDU_CLOUD_AK=${BAIDU_CLOUD_AK}
-      --build-arg BAIDU_CLOUD_SK=${BAIDU_CLOUD_SK}
+      --build-arg BAIDU_CLOUD_AK=${BAIDU_CLOUD_AK_ALPHA}
+      --build-arg BAIDU_CLOUD_SK=${BAIDU_CLOUD_SK_ALPHA}
       --build-arg PUBLIC_URL=http://pntresa.yocdev.com/res/cht
       -t ${CONTAINER_IMAGE} .
     - docker push ${CONTAINER_IMAGE}
