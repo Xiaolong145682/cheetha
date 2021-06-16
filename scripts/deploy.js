@@ -54,28 +54,28 @@ async function uploadFile(bucket, key, path, url) {
 function getFiles() {
   const jsFiles = fs.readdirSync('./dist/static/js')
     .filter(it => it.endsWith('.js'))
-    .map(it => `js/${it}`)
+    .map(it => `static/js/${it}`)
   const cssFiles = fs.readdirSync('./dist/static/css')
     .filter(it => it.endsWith('.css'))
-    .map(it => `css/${it}`)
+    .map(it => `static/css/${it}`)
   let imageFiles = []
   let mediaFiles = []
   let fontFiles = []
   try {
     imageFiles = fs.readdirSync('./dist/static/images')
-      .map(it => `images/${it}`)
+      .map(it => `static/images/${it}`)
   } catch (error) {
     console.log('`./dist/static/images` is empty. Ignored.')
   }
   try {
     mediaFiles = fs.readdirSync('./dist/static/media')
-      .map(it => `media/${it}`)
+      .map(it => `static/media/${it}`)
   } catch (error) {
     console.log('`./dist/static/media` is empty. Ignored.')
   }
   try {
     fontFiles = fs.readdirSync('./dist/static/fonts')
-      .map(it => `fonts/${it}`)
+      .map(it => `static/fonts/${it}`)
   } catch (error) {
     console.log('`./dist/static/fonts` is empty. Ignored.')
   }
@@ -94,7 +94,7 @@ async function upload(files) {
     for (const file of files) {
       const key = `res/cht/${file}`
       const url = `${process.env.PUBLIC_URL}/${file}`
-      await uploadFile(bucket, key, `./dist/static/${file}`, url)
+      await uploadFile(bucket, key, `./dist/${file}`, url)
     }
   } catch (error) {
     console.error(error)
