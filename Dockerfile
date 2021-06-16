@@ -35,7 +35,7 @@ RUN --mount=type=cache,id=yarn-cache-v6,target=/usr/local/share/.cache/yarn/v6 \
 
 
 # host in nginx
-FROM nginx:stable
+FROM nginx:mainline-alpine
 
 COPY --from=builder /app/dist/index.html /usr/share/nginx/html/index.html
 
