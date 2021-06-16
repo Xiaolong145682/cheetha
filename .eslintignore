@@ -1,4 +1,5 @@
 /config
+/scripts
 /src/utils/yoc-resource-kit
 /dist
 /src/data/fetch-client

@@ -1,0 +1,47 @@
+variables:
+  DOCKER_BUILDKIT: 1
+
+  GIT_DEPTH: 1
+  GIT_SUBMODULE_STRATEGY: recursive
+
+  REGISTRY: registry-vpc.cn-hongkong.aliyuncs.com
+  CONTAINER_IMAGE_PROD: ${REGISTRY}/yoc/${CI_PROJECT_NAME}:latest
+  CONTAINER_IMAGE_SHA_PROD: ${REGISTRY}/yoc/${CI_PROJECT_NAME}:${CI_COMMIT_SHA}
+  CONTAINER_IMAGE: ${REGISTRY}/yoc/${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}:latest
+
+stages:
+  - build
+
+build-alpha:
+  stage: build
+  script:
+    - docker login -u dev@yoc -p ${ALI_REGISTRY_PASS} ${REGISTRY}
+    - >-
+      docker build
+      --build-arg NODE_ENV=production
+      --build-arg BUILD_ENV=alpha
+      --build-arg BAIDU_CLOUD_AK=${BAIDU_CLOUD_AK}
+      --build-arg BAIDU_CLOUD_SK=${BAIDU_CLOUD_SK}
+      --build-arg PUBLIC_URL=http://pntresa.yocdev.com/res/cht
+      -t ${CONTAINER_IMAGE} .
+    - docker push ${CONTAINER_IMAGE}
+  only:
+    - alpha
+
+# build-production:
+#   stage: build
+#   script:
+#     - docker login -u dev@yoc -p ${ALI_REGISTRY_PASS} ${REGISTRY}
+#     - >-
+#       docker build
+#       --build-arg NODE_ENV=production
+#       --build-arg BUILD_ENV=production
+#       --build-arg BAIDU_CLOUD_AK=${BAIDU_CLOUD_AK}
+#       --build-arg BAIDU_CLOUD_SK=${BAIDU_CLOUD_SK}
+#       --build-arg PUBLIC_URL=<TODO>
+#       -t ${CONTAINER_IMAGE_PROD}
+#       -t ${CONTAINER_IMAGE_SHA_PROD} .
+#     - docker push ${CONTAINER_IMAGE_PROD}
+#     - docker push ${CONTAINER_IMAGE_SHA_PROD}
+#   only:
+#     - master
