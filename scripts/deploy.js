@@ -35,20 +35,20 @@ async function uploadFile(bucket, key, path, url) {
 
   console.log('Uploading file:', { bucket, key, path, url })
 
-  // let retryTimes = 0
-  // do {
-  //   try {
-  //     const res = await client.putObjectFromFile(bucket, key, path)
-  //     console.log(`File uploaded to ${url}`)
-  //     return res
-  //   } catch (error) {
-  //     retryTimes++
-  //     console.error(`${key} Retrying ${retryTimes} due to error:`, error)
-  //     if (retryTimes >= 3) {
-  //       process.exit(1)
-  //     }
-  //   }
-  // } while (retryTimes < 3)
+  let retryTimes = 0
+  do {
+    try {
+      const res = await client.putObjectFromFile(bucket, key, path)
+      console.log(`File uploaded to ${url}`)
+      return res
+    } catch (error) {
+      retryTimes++
+      console.error(`${key} Retrying ${retryTimes} due to error:`, error)
+      if (retryTimes >= 3) {
+        process.exit(1)
+      }
+    }
+  } while (retryTimes < 3)
 }
 
 function getFiles() {
