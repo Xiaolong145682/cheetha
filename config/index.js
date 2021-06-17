@@ -1,5 +1,4 @@
 const path = require('path')
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 const TerserPlugin = require("terser-webpack-plugin")
 const routes = require('../src/router/routes.json')
 const HOST = JSON.stringify('http://pntapi.yocdev.com')
