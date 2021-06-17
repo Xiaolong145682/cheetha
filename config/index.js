@@ -14,7 +14,7 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: ['tarojs-router-next-plugin'],
+  plugins: [['tarojs-router-next-plugin']],
   defineConstants: {
   },
   alias: {
