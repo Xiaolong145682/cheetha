@@ -1,0 +1,105 @@
+<%
+const { utils, route, config } = it;
+const { requestBodyInfo, responseBodyInfo } = route;
+const { _, getInlineParseContent, getParseContent, parseSchema, getComponentByRef, require } = utils;
+const { parameters, path, method, payload, params, query, formData, security, requestParams } = route.request;
+const { type, errorType, contentTypes } = route.response;
+const routeDocs = includeFile("@base/route-docs", { config, route, utils });
+const queryName = (query && query.name) || "query";
+const pathParams = _.values(parameters);
+const isFetchTemplate = config.httpClientType === config.constants.HTTP_CLIENT.FETCH;
+
+const requestConfigParam = {
+    name: pathParams.some((pathArg) => pathArg.name === "params") ? "requestParams" : "params",
+    optional: true,
+    type: "RequestParams",
+    defaultValue: "{}",
+}
+
+const argToTmpl = ({ name, optional, type, defaultValue }) => `${name}${!defaultValue && optional ? '?' : ''}: ${type.replace(/\"/g, "")}${defaultValue ? ` = ${defaultValue}` : ''}`;
+
+const rawWrapperArgs = config.extractRequestParams ?
+    _.compact([
+        requestParams && {
+          name: pathParams.length ? `{ ${_.join(_.map(pathParams, "name"), ", ")}, ...${queryName} }` : queryName,
+          optional: false,
+          type: getInlineParseContent(requestParams),
+        },
+        ...(!requestParams ? pathParams : []),
+        payload,
+        {
+        name: 'option',
+        optional: true,
+        type: "Option"
+        }
+    ]) :
+    _.compact([
+        ...pathParams,
+        query,
+        payload,
+        {
+        name: 'option',
+        optional: true,
+        type: "Option"
+        }
+    ])
+
+const wrapperArgs = _
+    // Sort by optionality
+    .sortBy(rawWrapperArgs, [o => o.optional])
+    .map(argToTmpl)
+    .join(', ')
+
+// RequestParams["type"]
+const requestContentKind = {
+    "JSON": "application/json",
+    "URL_ENCODED": "multipart/form-data",
+    "FORM_DATA": "application/x-www-form-urlencoded",
+}
+// RequestParams["format"]
+const responseContentKind = {
+    "JSON": '"json"',
+    "IMAGE": '"blob"',
+    "FORM_DATA": isFetchTemplate ? '"formData"' : '"document"'
+}
+
+const bodyTmpl = _.get(payload, "name") || null;
+const queryTmpl = (query != null && queryName) || null;
+const bodyContentKindTmpl = requestContentKind[requestBodyInfo.contentKind] || null;
+const responseFormatTmpl = responseContentKind[responseBodyInfo.success && responseBodyInfo.success.schema && responseBodyInfo.success.schema.contentKind] || null;
+const securityTmpl = security ? 'true' : null;
+
+const describeReturnType = () => {
+    if (!config.toJS) return "";
+
+    switch(config.httpClientType) {
+        case config.constants.HTTP_CLIENT.AXIOS: {
+          return `Promise<AxiosResponse<${type}>>`
+        }
+        default: {
+          return `Promise<HttpResponse<${type}, ${errorType}>`
+        }
+    }
+}
+
+%>
+/**
+<%~ routeDocs.description %>
+
+ * <% /* Here you can add some other JSDoc tags */ %>
+
+<%~ routeDocs.lines %>
+
+ */
+
+export const <%~ route.routeName.usage %> = async (<%~ wrapperArgs %>)<%~ config.toJS ? `: ${describeReturnType()}` : "" %> : Promise<<%~ type %>> =>{
+    return await request(`<%~ "${apiUrl}"+`${path}` %>`,{
+        method: '<%~ _.upperCase(method) %>',
+        body: <%~ queryTmpl || bodyTmpl %>,
+        headers: {
+            'content-type': <%~ `"${responseBodyInfo.contentTypes[0]}"` %>
+        },
+        ...option
+    })
+    }
+

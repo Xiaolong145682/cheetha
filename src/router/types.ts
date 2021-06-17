@@ -1,2 +1,2 @@
-export type RoutesName = "index" | "home" | "my" | "recentlyRead"
+export type RoutesName = "authCenter" | "home" | "index" | "login" | "my" | "recentlyRead"
 		

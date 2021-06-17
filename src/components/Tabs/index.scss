@@ -1,0 +1,24 @@
+.tabs {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px 0;
+  background: #ffffff;
+  border: 1px solid #dbdbdb;
+
+  &-item {
+    flex: 1;
+    font-size: 40px;
+    color: #000000;
+    text-align: center;
+
+    &__selected {
+      color: #FB4436;
+    }
+
+  }
+}

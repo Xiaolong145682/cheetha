@@ -24,3 +24,5 @@ declare const process: {
     [key: string]: any
   }
 }
+
+declare const API_URL: string

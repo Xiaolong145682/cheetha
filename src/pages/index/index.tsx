@@ -24,7 +24,9 @@ interface Index {
 class Index extends Component {
   componentWillMount () { }
 
-  componentDidMount () { }
+  componentDidMount () {
+    // routerPush('authCenter')
+  }
 
   componentWillUnmount () { }
 

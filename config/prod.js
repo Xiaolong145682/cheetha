@@ -1,8 +1,10 @@
 module.exports = {
   env: {
-    NODE_ENV: '"production"',
+    NODE_ENV: '"production"'
   },
-  defineConstants: {},
+  defineConstants: {
+    API_URL: JSON.stringify('http://pntapi.yocdev.com')
+  },
   mini: {},
   h5: {
     /**

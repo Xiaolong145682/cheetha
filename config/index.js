@@ -2,7 +2,7 @@ const path = require('path')
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 const TerserPlugin = require("terser-webpack-plugin")
 const routes = require('../src/router/routes.json')
-
+const HOST = JSON.stringify('http://pntapi.yocdev.com')
 
 const config = {
   projectName: 'cheetah',
@@ -15,8 +15,9 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: [],
-  defineConstants: {},
+  plugins: ['tarojs-router-next-plugin'],
+  defineConstants: {
+  },
   alias: {
     '@components': path.resolve(__dirname, '..', 'src/components'),
     '@utils': path.resolve(__dirname, '..', 'src/utils'),
@@ -25,6 +26,7 @@ const config = {
     '@stores': path.resolve(__dirname, '..', 'src/stores'),
     '@assets': path.resolve(__dirname, '..', 'src/assets'),
     '@api': path.resolve(__dirname, '..', 'src/api'),
+    '@router': path.resolve(__dirname, '..', 'src/router'),
     '@yoc-types': path.resolve(__dirname, '..', 'types'),
   },
   copy: {
@@ -57,6 +59,18 @@ const config = {
     },
   },
   h5: {
+    devServer: {
+      open: true,
+      proxy: {
+        '/api': {
+          target: JSON.parse(HOST),
+          pathRewrite: {
+            '^/api': ''
+          },
+          changeOrigin: true
+        }
+      }
+    },
     output: {
       filename: 'static/js/[name].[hash:8].js',
       chunkFilename: 'static/js/[name].[contenthash:8].js',
@@ -87,7 +101,12 @@ const config = {
         },
       },
     },
-  },
+    router: {
+      mode: 'hash', //可选 'hash' | 'browser'
+      // 配置自定义路由
+      customRoutes: routes.customRoutes
+    }
+  }
 }
 
 

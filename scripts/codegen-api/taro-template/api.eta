@@ -1,0 +1,22 @@
+<%
+const { utils, route, config, modelTypes } = it;
+const { _, classNameCase, require } = utils;
+const apiClassName = classNameCase(route.moduleName)+'Api';
+const apiInstanceName = route.moduleName + 'Api';
+const routes = route.routes;
+const dataContracts = _.map(modelTypes, "name");
+%>
+<% if (dataContracts.length) { %>
+import { <%~ dataContracts.join(", ") %> } from "./<%~ config.fileNames.dataContracts %>"
+<% } %>
+import { apiUrl } from '@utils/ConfigsKit'
+import  request from '../request'
+
+interface Option {
+  ignoreFailToast: boolean
+}
+
+<% routes.forEach((route) => { %>
+    <%~ includeFile('./procedure-call.eta', { ...it, route }) %>
+<% }) %>
+

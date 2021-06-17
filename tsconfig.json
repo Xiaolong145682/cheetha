@@ -29,14 +29,16 @@
       "@hooks": ["./src/hooks"],
       "@stores": ["./src/stores"],
       "@assets": ["./src/assets"],
-      "@api": ["./src/api"],
+      "@api/*": ["./src/api/*"],
       "@components/*": ["./src/components/*"],
       "@utils/*": ["./src/utils/*"],
       "@data/*": ["./src/data/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@stores/*": ["./src/stores/*"],
       "@assets/*": ["./src/assets/*"],
-      "@yoc-types/*": ["./types/*"]
+      "@yoc-types/*": ["./types/*"],
+      "@router": ["./src/router"],
+      "@router/*": ["./src/router/*"]
     }
   },
   "include": [
@@ -47,7 +49,8 @@
   "exclude": [
     "**/*.spec.ts",
     "node_modules",
-    "dist"
+    "dist",
+    "scripts"
   ],
   "compileOnSave": false
 }

@@ -1,33 +1,37 @@
 {
-  "tabs": {
-    "home": "pages/tabs/home/index",
-    "my": "pages/tabs/my/index",
-    "recentlyRead": "pages/tabs/recentlyRead/index"
-  },
+  "tabs": {},
   "packages": {},
   "subpackages": [],
   "pages": [
+    "pages/authCenter/index",
+    "pages/home/index",
     "pages/index/index",
-    "pages/tabs/home/index",
-    "pages/tabs/my/index",
-    "pages/tabs/recentlyRead/index"
+    "pages/login/index",
+    "pages/my/index",
+    "pages/recentlyRead/index"
   ],
   "source": {
+    "authCenter": "pages/authCenter/index",
+    "home": "pages/home/index",
     "index": "pages/index/index",
-    "home": "pages/tabs/home/index",
-    "my": "pages/tabs/my/index",
-    "recentlyRead": "pages/tabs/recentlyRead/index"
+    "login": "pages/login/index",
+    "my": "pages/my/index",
+    "recentlyRead": "pages/recentlyRead/index"
   },
   "names": [
-    "index",
+    "authCenter",
     "home",
+    "index",
+    "login",
     "my",
     "recentlyRead"
   ],
   "customRoutes": {
+    "/pages/authCenter/index": "/auth-center",
+    "/pages/home/index": "/home",
     "/pages/index/index": "/index",
-    "/pages/tabs/home/index": "/home",
-    "/pages/tabs/my/index": "/my",
-    "/pages/tabs/recentlyRead/index": "/recently-read"
+    "/pages/login/index": "/login",
+    "/pages/my/index": "/my",
+    "/pages/recentlyRead/index": "/recently-read"
   }
 }
