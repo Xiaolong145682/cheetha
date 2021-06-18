@@ -16,8 +16,8 @@ ENV BAIDU_CLOUD_SK=${BAIDU_CLOUD_SK}
 ENV PUBLIC_URL=${PUBLIC_URL}
 
 WORKDIR /app
-COPY . /app
 
+COPY package.json yarn.lock .yarnrc .
 RUN --mount=type=cache,id=yarn-cache-v6,target=/usr/local/share/.cache/yarn/v6 \
     --mount=type=cache,id=panthera-cheetah-node-modules,sharing=locked,target=node_modules \
     # 检查 yarn 缓存目录是否匹配
@@ -29,7 +29,10 @@ RUN --mount=type=cache,id=yarn-cache-v6,target=/usr/local/share/.cache/yarn/v6 \
     echo 'node_modules cache id: panthera-cheetah-node-modules'; \
     echo 'ls node_modules'; ls node_modules | wc -l | awk '{print "  "$1" items"}'; \
     # 由于 .yarnrc 的设置，这里相当于 `yarn install --frozen-lockfile`。
-    yarn install --production=true && \
+    yarn install --production=true
+
+COPY . .
+RUN --mount=type=cache,id=panthera-cheetah-node-modules,sharing=locked,target=node_modules \
     yarn run build:h5 && \
     yarn run deploy
 
