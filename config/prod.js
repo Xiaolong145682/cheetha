@@ -3,7 +3,7 @@ module.exports = {
     NODE_ENV: '"production"'
   },
   defineConstants: {
-    API_URL: JSON.stringify('http://pntapi.yocdev.com')
+    API_URL: JSON.stringify('http://xxxxx')
   },
   mini: {},
   h5: {

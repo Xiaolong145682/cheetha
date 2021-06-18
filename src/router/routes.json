@@ -5,32 +5,24 @@
   "pages": [
     "pages/authCenter/index",
     "pages/home/index",
-    "pages/index/index",
-    "pages/login/index",
     "pages/my/index",
     "pages/recentlyRead/index"
   ],
   "source": {
     "authCenter": "pages/authCenter/index",
     "home": "pages/home/index",
-    "index": "pages/index/index",
-    "login": "pages/login/index",
     "my": "pages/my/index",
     "recentlyRead": "pages/recentlyRead/index"
   },
   "names": [
     "authCenter",
     "home",
-    "index",
-    "login",
     "my",
     "recentlyRead"
   ],
   "customRoutes": {
     "/pages/authCenter/index": "/auth-center",
     "/pages/home/index": "/home",
-    "/pages/index/index": "/index",
-    "/pages/login/index": "/login",
     "/pages/my/index": "/my",
     "/pages/recentlyRead/index": "/recently-read"
   }

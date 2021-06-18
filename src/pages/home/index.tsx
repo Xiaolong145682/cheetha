@@ -1,22 +1,25 @@
 import React, { Component } from 'react'
 import { View } from '@tarojs/components'
-import Cookies from 'js-cookie'
 
 import Tabs from '@components/Tabs'
 import { Menu } from '@components/types'
+import Router from 'tarojs-router-next'
 
 export default class index extends Component {
-  handleToLogin = (): void => {
-    const token = Cookies.get('token')
-    window.location.href =
-      `https://hapjs.org/app/com.yinliuredian.weather/pages/Web?userToken=${token}`
+  handleToLogin = async (): Promise<void> => {
+    try {
+      const data = await Router.toAuthCenter()
+      console.log('==> data: ', data)
+    } catch (error) {
+      console.log('error: ', error)
+    }
   }
+
   render() {
     return (
       <View>
         <Tabs currentTab={Menu.Home} />
-        <View>书城</View>
-        <View onClick={this.handleToLogin}>前往快应用</View>
+        <View onClick={this.handleToLogin}>前往认证中心</View>
       </View>
     )
   }

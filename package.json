@@ -28,7 +28,6 @@
     "dev:qq": "npm run build:qq -- --watch",
     "dev:quickapp": "npm run build:quickapp -- --watch",
     "tarocodegen": "tarocodegen",
-    "genApi": "node scripts/codegen-api/index.js",
     "pre-commit-msg": "echo 'Pre-commit checks...' && exit 0",
     "lint": "echo '[ESLint]' && eslint './**/*.{js,jsx,ts,tsx}'",
     "deploy": "node scripts/deploy.js"

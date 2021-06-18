@@ -5,7 +5,7 @@ module.exports = {
     NODE_ENV: '"development"'
   },
   defineConstants: {
-    API_URL: isH5 ? '"/api"' : JSON.stringify('http://pntapi.yocdev.com')
+    API_URL: isH5 ? '"/api"' : JSON.stringify('http://xxxx')
   },
   mini: {},
   h5: {},

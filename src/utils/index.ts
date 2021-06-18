@@ -1,1 +1,0 @@
-export { getProviderUrlInAuthCenterMp } from './wxUrlKit'

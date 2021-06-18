@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import { Provider } from 'mobx-react'
-import Router from 'tarojs-router-next'
-import Cookies from 'js-cookie'
-
 import './middleware'
 
 import counterStore from './store/counter'
@@ -13,12 +10,7 @@ const store = {
 }
 
 class App extends Component {
-  componentDidShow () {
-    const token = Cookies.get('token')
-    if (!token) {
-      Router.toLogin()
-    }
-  }
+  componentDidShow () {}
 
   // this.props.children 就是要渲染的页面
   render () {
