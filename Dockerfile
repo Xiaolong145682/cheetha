@@ -19,7 +19,7 @@ WORKDIR /app
 
 COPY package.json yarn.lock .yarnrc .
 RUN --mount=type=cache,id=yarn-cache-v6,target=/usr/local/share/.cache/yarn/v6 \
-    --mount=type=cache,id=panthera-cheetah-node-modules,sharing=locked,target=node_modules \
+    --mount=type=cache,id=panthera-cheetah-node-modules-2,sharing=locked,target=node_modules \
     # 检查 yarn 缓存目录是否匹配
     [ "$(yarn cache dir)" != '/usr/local/share/.cache/yarn/v6' ] && \
     echo "yarn cache dir not matched: $(yarn cache dir)" && exit 1 || \
@@ -32,7 +32,7 @@ RUN --mount=type=cache,id=yarn-cache-v6,target=/usr/local/share/.cache/yarn/v6 \
     yarn install --production=true
 
 COPY . .
-RUN --mount=type=cache,id=panthera-cheetah-node-modules,sharing=locked,target=node_modules \
+RUN --mount=type=cache,id=panthera-cheetah-node-modules-2,sharing=locked,target=node_modules \
     yarn run build:h5 && \
     yarn run deploy
 
